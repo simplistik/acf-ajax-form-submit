@@ -7,7 +7,8 @@ Submit a WordPress ACF front end form via AJAX, instead of it's standard POST/pa
 1. Advanced Custom Fields for WordPress (ACF): https://www.advancedcustomfields.com/
 2. ACF Extended is also being used. If you're using ACF there's no reason to not use this, it's a straight enhancement: https://www.acf-extended.com/
 3. jQuery is queued; ACF already does this so it shouldn't be an issue.
-4. You know how to do an AJAX hook in WP: https://codex.wordpress.org/AJAX_in_Plugins/ 
+    1. Your script should be queued to have jQuery as a dependency.
+5. You know how to do an AJAX hook in WP: https://codex.wordpress.org/AJAX_in_Plugins/ 
 
 ## FAQ
 **Q:** Can this be done w/o jQuery? 
