@@ -1,7 +1,7 @@
 # ACF/ACFE AJAX Form Submit
 Submit a WordPress ACF front end form via AJAX, instead of it's standard POST/page refresh method.
 
-"Disables" the refresh logic that ACF front end forms uses in favor of a custom AJAX submission. This allows you to utilize all the checks and validation that already come with ACF & ACFE and just handle the 
+"Disables" the refresh logic that ACF front end forms uses in favor of a custom AJAX submission. This allows you to utilize all the checks and validation that already come with ACF & ACFE and just handle the front end user interactions.
 
 ## Requirements
 1. Advanced Custom Fields for WordPress (ACF): https://www.advancedcustomfields.com/
