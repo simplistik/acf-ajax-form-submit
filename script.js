@@ -1,6 +1,6 @@
 /* eslint-disable */
 ( function( $ ) {
-  if ( acf !== 'undefined' ) {
+  if ( typeof acf !== 'undefined' ) {
 
     acf.addAction( 'validation_success', ( $el, json ) => {
 
