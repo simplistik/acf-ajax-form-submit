@@ -34,9 +34,6 @@ This can be done any number of ways so I can't really explain how to do this to 
 **A:** ... It is an AJAX method (JavaScript is in the acronym). But it will fallback to ACFs default state.
 ##
 
-**Q:** What version of ACF does this work with? 
-
-**A:** Tested with the most current version as of 08/12/22: ACF 5.12.3 and ACFE 0.8.8.7. 
-
 ## Updates
+* 04/30/2024 - Updated for compatibility with ACFE 0.9+. Tested with ACF 6.2.9 and ACFE 0.9.0.2.
 * 02/20/2023 - Tested with ACF 6.0.7 and ACFE 0.8.9.2 🚀
