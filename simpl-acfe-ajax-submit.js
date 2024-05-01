@@ -27,18 +27,20 @@
          */
         acf.lockForm( $formEl );
 
-        const data = acf.serialize( $formEl );
+        const data = new FormData( $formEl[0] );
+        data.append( 'action', 'simpl_acfe_ajax_submit' );
 
         /**
          * Your custom action will do all the submission similar to
          * how ACF already does it, work smarter, not harder.
          */
-        data.action = 'simpl_acfe_ajax_submit';
         $.ajax( {
           url: acf.get( 'ajaxurl' ),
-          data: acf.prepareForAjax( data ),
+          data: data,
           type: 'post',
           dataType: 'json',
+          processData: false,
+          contentType: false,
           error( jqXHR, textStatus, errorThrown ) {
             const data = jqXHR.responseJSON;
 
