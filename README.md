@@ -120,6 +120,9 @@ Here is the minimum that you should include in your scripts:
 **A:** Yes, this could also be done with out jQuery. However, ACF and ACFE already have it queued up as a depenedency so I also use it for simplicity. When the day comes that they make the change, so will I.
 
 ## Change Log
+### 2.0.1
+- 05/01/2024 - Replace serialization with FormData.
+
 ### 2.0.0
 - 05/01/2024 - Refactor. Tested with ACF 6.2.9 and ACFE 0.9.0.2.
 
