@@ -11,7 +11,7 @@ Version 2 introduces a comprehensive refactoring while preserving the core funct
   - https://www.acf-extended.com/features/modules/forms
 
 ## Usage
-1. Install the plugin via the plugin installer, either by searching for it or uploading a .zip file.
+1. Install the plugin via the plugin installer by uploading a .zip file.
 2. Activate the plugin.
 3. Create your ACFE form.
 4. Click the "Attributes" tab and turn on "Enable AJAX Submission".
