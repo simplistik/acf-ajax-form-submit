@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Taproot Base - Tailwind" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
+
+  <description>A set of rules to check for a custom WordPress theme</description>
+  <!-- Based on the WordPress Coding Standards `phpcs.xml.dist.sample` file. -->
+
+  <!-- Pass some flags to PHPCS:
+    p flag: Show progress of the run.
+    s flag: Show sniff codes in all reports.
+  -->
+  <arg value="ps"/>
+
+  <!-- Strip the filepaths down to the relevant bit. -->
+  <arg name="basepath" value="./"/>
+
+  <!-- Check up to 8 files simultaneously. -->
+  <arg name="parallel" value="8"/>
+
+  <!-- Check PHP files only. JavaScript and CSS files are checked separately using the @wordpress/scripts package. -->
+  <arg name="extensions" value="php"/>
+
+  <!-- Check all files in this directory and the directories below it. -->
+  <file>.</file>
+
+  <!-- Exclude patterns. -->
+  <exclude-pattern>*vendor/*</exclude-pattern>
+  <exclude-pattern>/node_modules/*</exclude-pattern>
+
+
+  <!-- Include the WordPress-Extra standard. -->
+  <rule ref="WordPress-Extra">
+    <!--
+    We may want a middle ground though. The best way to do this is add the
+    entire ruleset, then rule by rule, remove ones that don't suit a project.
+    We can do this by running `phpcs` with the '-s' flag, which allows us to
+    see the names of the sniffs reporting errors.
+    Once we know the sniff names, we can opt to exclude sniffs which don't
+    suit our project like so.
+
+    The below two examples just show how you can exclude rules.
+    They are not intended as advice about which sniffs to exclude.
+    -->
+
+    <!--
+    <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+    <exclude name="WordPress.Security.EscapeOutput"/>
+    -->
+  </rule>
+
+  <!-- Let's also check that everything is properly documented. -->
+  <rule ref="WordPress-Docs"/>
+
+  <!-- Check for PHP cross-version compatibility. -->
+  <config name="testVersion" value="7.4-"/>
+  <rule ref="PHPCompatibilityWP"/>
+
+  <!--
+  To get the optimal benefits of using WPCS, we should add a couple of
+  custom properties.
+
+  For information on additional custom properties available, check out
+  the wiki:
+  https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties
+  -->
+  <config name="minimum_supported_wp_version" value="5.9"/>
+
+  <rule ref="WordPress.WP.I18n">
+    <properties>
+      <property name="text_domain" type="array">
+        <element value="tprt"/>
+      </property>
+    </properties>
+  </rule>
+
+  <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+    <properties>
+      <property name="prefixes" type="array">
+        <element value="tprt"/>
+      </property>
+    </properties>
+  </rule>
+
+  <rule ref="WordPress.Files.FileName">
+    <properties>
+      <property name="is_theme" value="true"/>
+    </properties>
+  </rule>
+
+  <rule ref="WordPress">
+    <exclude name="Generic.Strings.UnnecessaryStringConcat.Found" />
+    <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+    <exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma" />
+    <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+    <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
+    <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+    <exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound" />
+    <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+		<exclude name="WordPress.Files.FileName" />
+    <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
+    <exclude name="Squiz.Operators.ValidLogicalOperators.NotAllowed" />
+    <exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+    <!-- <exclude name="Generic.WhiteSpace.DisallowSpaceIndent" /> -->
+  </rule>
+
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+      <property name="tabIndent" value="false"/>
+    </properties>
+  </rule>
+
+</ruleset>

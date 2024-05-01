@@ -1,0 +1,39 @@
+{
+  "root": true,
+  "extends": [
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "settings": {},
+  "rules": {
+    "no-console": "warn",
+    "no-unused-vars": "warn",
+    "no-undef": "off",
+    "space-in-parens": [
+      "error",
+      "always"
+    ],
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ]
+  }
+}

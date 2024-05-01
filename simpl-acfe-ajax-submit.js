@@ -1,18 +1,17 @@
-/* eslint-disable */
 ( function( $ ) {
   if ( typeof acf !== 'undefined' ) {
-
     acf.addAction( 'validation_success', ( $el, json ) => {
 
       const $formEl = $( $el );
 
       /**
-       * Custom class set on the form just to ensure I'm doing what I want 
-       * on the correct form. You can validate this however you want, or 
+       * Custom class set on the form just to ensure I'm doing what I want
+       * on the correct form. You can validate this however you want, or
        * even remove it. This is just personal preference.
        */
 
-      if ( ! $formEl.hasClass( 'force-ajax-submission' ) ) return;
+      if ( ! $formEl.hasClass( simplAcfeAjaxConfig.jsClass ) ) return;
+
 
       /**
        * You could check for json.data.errors here if you're feelin froggy.
@@ -34,8 +33,7 @@
          * Your custom action will do all the submission similar to
          * how ACF already does it, work smarter, not harder.
          */
-        data.action = 'simpl_ajax_submit_form';
-
+        data.action = 'simpl_acfe_ajax_submit';
         $.ajax( {
           url: acf.get( 'ajaxurl' ),
           data: acf.prepareForAjax( data ),
@@ -44,17 +42,19 @@
           error( jqXHR, textStatus, errorThrown ) {
             const data = jqXHR.responseJSON;
 
-            alert( `OH NO! ${acf.maybe_get( data, 'message' )}` );
+            $( document ).trigger( 'simpl_ajax_submit_error', [ $formEl, data ] );
 
             acf.unlockForm( $formEl ); // Reset the ACF form back to normal.
           },
           success( data, textStatus, jqXHR ) {
             if ( data.success === true ) {
-              // Your custom success stuff will go here
-              alert( `YAY! ${acf.maybe_get( data, 'message' )}` ); 
+
+              $( document ).trigger( 'simpl_ajax_submit_success', [ $formEl, data ] );
+
             } else {
-              // Errors should be caught before this point, but you never know
-              alert( `OH NO! ${acf.maybe_get( data, 'message' )}` ); 
+
+              $( document ).trigger( 'simpl_ajax_submit_failure', [ $formEl, data ] );
+
             };
           },
           complete( jqXHR, textStatus ) {
@@ -66,4 +66,22 @@
 
     } ); // End validation_success hook
   } // End acf check
+
+  // Example of how to use the simpl_ajax_submit_success action.
+  // $( document ).on( 'simpl_ajax_submit_success', ( event, $formEl, data, options ) => {
+  //   $formEl.prev('.simpl-ajax-success').remove();
+  //   $formEl.before( `<div class="simpl-ajax-success">${data.message}</div>` );
+
+  //   if ( data.hide_form ) $formEl.remove();
+  // } );
+
+  // Example of how to use the simpl_acfe_ajax_submit action.
+  // $( document ).on( 'simpl_ajax_submit_error', ( event, $formEl, data, options ) => {
+  //   console.log( 'simpl_ajax_submit_error', event, $formEl, data );
+  // } );
+
+  // Example of how to use the simpl_ajax_submit_failure action.
+  // $( document ).on( 'simpl_ajax_submit_failure', ( event, $formEl, data, options ) => {
+  //   console.log( 'simpl_ajax_submit_failure', event, $formEl, data );
+  // } );
 })( jQuery );
